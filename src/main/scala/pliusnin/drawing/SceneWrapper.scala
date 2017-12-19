@@ -12,7 +12,7 @@ import scalafx.scene.shape.Line
 abstract class SceneWrapper[A <: Shape[B], B <: Point[B], C <: GVector[B]](_scene: Scene[A, B, C]) {
   private var scene: Scene[A, B, C] = _scene
 
-  val collisionLength = 50
+  val collisionLength = 100
 
   val collisionLines = mutable.Map[A, Line]()
 

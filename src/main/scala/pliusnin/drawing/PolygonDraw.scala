@@ -99,8 +99,8 @@ class PolygonDraw(var shape: Polygon,
 
 
   def movePoint(startP: Point2d): Point2d = {
-    val deltaX = start.x - startP.x
-    val deltaY = start.y - startP.y
+    val deltaX = end.x - startP.x
+    val deltaY = end.y - startP.y
     Point2d(
       startP.x + deltaX,
       startP.y + deltaY

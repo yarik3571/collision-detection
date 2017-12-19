@@ -1,6 +1,7 @@
 package pliusnin.geometry
 
 import pliusnin.geometry.vector.GVector
+import pliusnin.geometry.vector.GVector.{Vector2d, Vector3d}
 
 import scala.math._
 
@@ -11,17 +12,20 @@ sealed trait Point[A] {
 
   def <(other: A): Boolean
 
-  def +(other: A) : A
+  def +(other: A): A
 
-  def distanceTo(other: A) : Double
+  def -(other: A): A
 
-  def minimizeCoordinates(other: A) : A
+  def distanceTo(other: A): Double
 
-  def maximizeCoordinates(other: A) : A
+  def minimizeCoordinates(other: A): A
+
+  def maximizeCoordinates(other: A): A
 
 }
 
 case class Point2d(x: Double, y: Double) extends Point[Point2d] {
+  type B = Vector2d
 
   import Point2d._
 
@@ -31,13 +35,15 @@ case class Point2d(x: Double, y: Double) extends Point[Point2d] {
 
   override def +(other: Point2d): Point2d = plus(this, other)
 
-  override def minimizeCoordinates(other: Point2d) : Point2d =
+  override def minimizeCoordinates(other: Point2d): Point2d =
     Point2d.minimizeCoordinates(this, other)
 
-  override def maximizeCoordinates(other: Point2d) : Point2d =
+  override def maximizeCoordinates(other: Point2d): Point2d =
     Point2d.maximizeCoordinates(this, other)
 
   override def distanceTo(other: Point2d): Double = distance(this, other)
+
+  override def -(other: Point2d): Point2d = Point2d.minus(this, other)
 
 
 }
@@ -51,6 +57,11 @@ object Point2d {
   def plus(first: Point2d, second: Point2d) = Point2d(
     first.x + second.x,
     first.y + second.y
+  )
+
+  def minus(first: Point2d, second: Point2d) = Point2d(
+    first.x - second.x,
+    first.y - second.y
   )
 
   def bigger(first: Point2d, second: Point2d): Boolean =
@@ -74,6 +85,8 @@ object Point2d {
 
 
 case class Point3d(x: Double, y: Double, z: Double) extends Point[Point3d] {
+  type B = Vector3d
+
   import Point3d._
 
   override def >(other: Point3d): Boolean = bigger(this, other)
@@ -84,11 +97,15 @@ case class Point3d(x: Double, y: Double, z: Double) extends Point[Point3d] {
 
   override def distanceTo(other: Point3d): Double = distance(this, other)
 
-  override def minimizeCoordinates(other: Point3d) : Point3d =
+  override def minimizeCoordinates(other: Point3d): Point3d =
     Point3d.minimizeCoordinates(this, other)
 
-  override def maximizeCoordinates(other: Point3d) : Point3d =
+  override def maximizeCoordinates(other: Point3d): Point3d =
     Point3d.maximizeCoordinates(this, other)
+
+  override def -(other: Point3d): Point3d = Point3d.minus(this, other)
+
+
 }
 
 object Point3d {
@@ -101,6 +118,12 @@ object Point3d {
     first.x + second.x,
     first.y + second.y,
     first.z + second.z
+  )
+
+  def minus(first: Point3d, second: Point3d): Point3d = Point3d(
+    first.x - second.x,
+    first.y - second.y,
+    first.z - second.z
   )
 
   def bigger(first: Point3d, second: Point3d): Boolean =

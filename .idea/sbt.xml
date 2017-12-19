@@ -11,11 +11,6 @@
           </set>
         </option>
         <option name="sbtVersion" value="1.0.4" />
-        <option name="useAutoImport" value="true" />
-        <option name="useOurOwnAutoImport" value="true" />
-      </SbtProjectSettings>
-      <SbtProjectSettings>
-        <option name="externalProjectPath" value="D:\scala\coursework" />
       </SbtProjectSettings>
     </option>
     <option name="maximumHeapSize" value="4000" />

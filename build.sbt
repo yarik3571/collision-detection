@@ -1,4 +1,4 @@
-name := "coursework"
+name := "collision-detection"
 
 version := "0.1"
 

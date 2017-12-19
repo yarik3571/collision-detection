@@ -58,22 +58,14 @@ object Projection {
     }
 
     override def minMaxScalar(shape: Circle)(axis: Vector2d): (Double, Double) = {
-      val r = shape.radius
+      val d = shape.radius * 2
       val normAxis = GVector.normalize[Point2d, Vector2d](axis)
       val start =  Vector2d(
-        normAxis.x * r,
-        normAxis.y * r
-      )
-      val end = Vector2d(
-        normAxis.x * -r,
-        normAxis.y * -r
+        normAxis.x * d,
+        normAxis.y * d
       )
       val startScalar = GVector.dot[Point2d, Vector2d](start, axis)
-      val endScalar = GVector.dot[Point2d, Vector2d](end, axis)
-
-      val minScalar = math.min(startScalar, endScalar)
-      val maxScalar = math.max(startScalar, endScalar)
-      (minScalar, maxScalar)
+      (startScalar, startScalar)
     }
   }
 
