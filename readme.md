@@ -1,6 +1,6 @@
 # Collision detection
 
-Two-step collision detection with AABB and SAT. 
+Two-step collision detection with AABB (axis-aligned bounding box) and SAT (separate axis theorem). 
 It provides collision detection logic for 2d and 3d cases.
 Graphic demostration provided only for 2d case.
 
