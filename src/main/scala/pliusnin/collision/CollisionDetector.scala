@@ -63,8 +63,11 @@ object CollisionDetector {
         .zip(secondProjections)
         .view
         .map { case ((minA, maxA), (minB, maxB)) =>
-          if (minA < minB) minB - maxA
-          else minA - maxB
+          if (minA < minB) {
+            minB - maxA
+          } else {
+            minA - maxB
+          }
         }
       overlays
     }
@@ -97,8 +100,11 @@ object CollisionDetector {
       val c = a.center - b.center
       val cVector = Vector2d(c.x, c.y)
       val dot = GVector.dot[D, C](dir, cVector)(vo)
-      if (dot < 0) GVector.negative[D, C](dir)(vo)
-      else dir
+      if (dot < 0) {
+        GVector.negative[D, C](dir)(vo)
+      } else {
+        dir
+      }
     }
   }
 
@@ -113,8 +119,11 @@ object CollisionDetector {
       val c = a.center - b.center
       val cVector = Vector3d(c.x, c.y, c.z)
       val dot = GVector.dot[D, C](dir, cVector)(vo)
-      if (dot < 0) GVector.negative[D, C](dir)(vo)
-      else dir
+      if (dot < 0) {
+        GVector.negative[D, C](dir)(vo)
+      } else {
+        dir
+      }
     }
   }
 
@@ -128,7 +137,7 @@ object CollisionDetector {
         v2 <- b.verticies
       } yield GVector.fromPoints[Point2d, Vector2d](v2, v1)(vo)
 
-      val axises = a.sepAxises ++ b.sepAxises //++ vertAxises
+      val axises = a.sepAxises ++ b.sepAxises
 
       detectWithOverlays(axises, a, b)
     }
@@ -150,7 +159,9 @@ object CollisionDetector {
         val axis = GVector.fromPoints[D, C](closestVert, b.center)(vo)
         val norm = GVector.normalize[D, C](axis)(vo)
         Some(chooseDirection(norm, a, b))
-      } else None
+      } else {
+        None
+      }
     }
 
     override implicit val aProj: Projector[Polygon, Vector2d] = polygonProjector
@@ -170,7 +181,9 @@ object CollisionDetector {
       if (distance < rSum) {
         val dir = chooseDirection(distanceVector, a, b)
         Some(dir)
-      } else None
+      } else {
+        None
+      }
     }
   }
 
@@ -211,7 +224,9 @@ object CollisionDetector {
         val axis = GVector.fromPoints[D, C](closestFace, b.center)(vo)
         Some(GVector.normalize[D, C](axis)(vo))
       }
-      else None
+      else {
+        None
+      }
     }
 
     override implicit val aProj: Projector[A, Vector3d] = faceShapeProjector
@@ -228,7 +243,9 @@ object CollisionDetector {
       val rSum = a.radius + b.radius
       if (distance < rSum) {
         Some(distanceVector)
-      } else None
+      } else {
+        None
+      }
     }
 
     override implicit val aProj: Projector[A, Vector3d] = sphereProjector

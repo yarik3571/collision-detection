@@ -25,7 +25,7 @@ trait ShapeDrawInteractor extends MouseHandler {
 
   def start: Point2D = _start
 
-  def start_=(p: Point2D) {
+  def start_=(p: Point2D): Unit = {
     _start = p
     _end = p
     update()

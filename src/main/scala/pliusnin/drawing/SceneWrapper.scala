@@ -23,7 +23,7 @@ abstract class SceneWrapper[A <: Shape[B], B <: Point[B], C <: GVector[B]](_scen
 
   scene.shapes.foreach(add)
 
-  def add(shape: A) = {
+  def add(shape: A): Unit = {
     collisionLines.put(shape, new Line {
       stroke = Color.web(colors(index % colors.size), 0.5)
       strokeWidth = 3
@@ -32,7 +32,7 @@ abstract class SceneWrapper[A <: Shape[B], B <: Point[B], C <: GVector[B]](_scen
     scene = scene.add(shape)
   }
 
-  def update(old: A, shape: A) = synchronized {
+  def update(old: A, shape: A): Unit = synchronized {
     val a = collisionLines.remove(old)
     a.foreach(line => collisionLines.put(shape, line))
 
@@ -48,11 +48,10 @@ abstract class SceneWrapper[A <: Shape[B], B <: Point[B], C <: GVector[B]](_scen
   def updateLine(shape: A, dir: C)
 
   def updateCollisions(): Unit = {
-    println("Searching for collisions")
+
     resetLines()
     scene.collisions.foreach {
       case (s, dir) => updateLine(s, dir)
-        println(s"Collsion found $dir for $s")
     }
   }
 

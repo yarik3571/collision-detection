@@ -8,7 +8,7 @@ import pliusnin.geometry.{BoundingBox, Point3d}
 
 class FaceShape private[shape](val faces: Seq[Face]) extends Shape3d {
 
-  val verticies = faces
+  val verticies: Seq[Point3d] = faces
     .flatMap(_.points)
     .distinct
 

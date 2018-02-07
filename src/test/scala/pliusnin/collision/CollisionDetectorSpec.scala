@@ -254,14 +254,6 @@ class CollisionDetectorSpec extends FlatSpec with Matchers {
     res shouldBe None
   }
 
-  it should "find collision for parallelipiped and sphere if it exists" in {
-    val parallelipiped = defaultParallelipiped
-    val sphere = defaultSphere
-    val first = collision(parallelipiped, sphere)
-    val second = collision(sphere, parallelipiped)
-    first.isDefined shouldBe true
-    first shouldBe second
-  }
 
   it should "not find collision for parallelipiped and sphere if it not exists" in {
     val parallelipiped = defaultParallelipiped

@@ -1,6 +1,5 @@
 package pliusnin.geometry.vector
 
-import pliusnin.geometry.vector.GVector.VectorOps
 import pliusnin.geometry.{Point, Point2d, Point3d}
 
 import scala.math._
@@ -9,6 +8,7 @@ import scala.math._
 sealed trait GVector[A <: Point[A]] {
   def toPoint: A
 }
+
 
 object GVector {
 
@@ -40,9 +40,9 @@ object GVector {
   def length[A <: Point[A], B <: GVector[A]](a: B)(implicit ops: VectorOps[A, B]): Double =
     sqrt(lengthSqr[A, B](a))
 
-  def normal(vector2d: Vector2d) = Vector2d(-vector2d.y, vector2d.x)
+  def normal(vector2d: Vector2d): Vector2d = Vector2d(-vector2d.y, vector2d.x)
 
-  def normal(a: Vector3d, b: Vector3d) = Vector3d(
+  def normal(a: Vector3d, b: Vector3d): Vector3d = Vector3d(
     a.y * b.z - a.z * b.y,
     a.z * b.x - a.x * b.z,
     a.x * b.y - a.y * b.x

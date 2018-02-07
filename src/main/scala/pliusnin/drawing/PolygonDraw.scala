@@ -32,7 +32,7 @@ trait Draw2d {
     opacity = 0.1
   }
 
-  def drawBox() = {
+  def drawBox(): Unit = {
     val box = shape.box
     collisionBox.x = box.min.x
     collisionBox.y = box.min.y
@@ -56,9 +56,9 @@ class PolygonDraw(var shape: Polygon,
                   val scene: SceneWrapper[Shape2d, Point2d, Vector2d])
   extends ShapeDrawInteractor with Draw2d {
 
-  def verticies = shape.verticies
+  def verticies: Seq[Point2d] = shape.verticies
 
-  def sideVectors = shape.sideVectors
+  def sideVectors: Seq[Vector2d] = shape.sideVectors
 
   val sideLines = shape.sides.map { case (s, e) =>
     val line = new Line {
@@ -129,6 +129,5 @@ class CircleDraw(var shape: Circle,
     shape = updated
     drawBox()
   }
-
 
 }

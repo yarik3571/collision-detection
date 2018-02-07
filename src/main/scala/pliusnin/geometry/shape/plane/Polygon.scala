@@ -34,8 +34,11 @@ case class Polygon(first: Point2d, second: Point2d, points: Point2d*) extends Sh
 
   lazy val sides: Seq[Side] = {
     val s = verticies.zip(verticies.tail)
-    if (verticies.last == first) s
-    else s :+ (verticies.last, first)
+    if (verticies.last == first) {
+      s
+    } else {
+      s :+ (verticies.last, first)
+    }
   }
 
   lazy val sideVectors: Seq[Vector2d] = {

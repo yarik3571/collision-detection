@@ -54,12 +54,12 @@ object Point2d {
     sqrt(pow2(first.x - second.x) + pow2(first.y - second.y))
   }
 
-  def plus(first: Point2d, second: Point2d) = Point2d(
+  def plus(first: Point2d, second: Point2d): Point2d = Point2d(
     first.x + second.x,
     first.y + second.y
   )
 
-  def minus(first: Point2d, second: Point2d) = Point2d(
+  def minus(first: Point2d, second: Point2d): Point2d = Point2d(
     first.x - second.x,
     first.y - second.y
   )
@@ -70,13 +70,13 @@ object Point2d {
   def less(first: Point2d, second: Point2d): Boolean =
     first.x < first.x && first.y < first.y
 
-  def minimizeCoordinates(first: Point2d, second: Point2d) =
+  def minimizeCoordinates(first: Point2d, second: Point2d): Point2d =
     Point2d(
       min(first.x, second.x),
       min(first.y, second.y)
     )
 
-  def maximizeCoordinates(first: Point2d, second: Point2d) =
+  def maximizeCoordinates(first: Point2d, second: Point2d): Point2d =
     Point2d(
       max(first.x, second.x),
       max(first.y, second.y)
@@ -132,14 +132,14 @@ object Point3d {
   def less(first: Point3d, second: Point3d): Boolean =
     first.x < second.x && first.y < second.y && first.z < second.z
 
-  def minimizeCoordinates(first: Point3d, second: Point3d) =
+  def minimizeCoordinates(first: Point3d, second: Point3d): Point3d =
     Point3d(
       min(first.x, second.x),
       min(first.y, second.y),
       min(first.z, second.z)
     )
 
-  def maximizeCoordinates(first: Point3d, second: Point3d) =
+  def maximizeCoordinates(first: Point3d, second: Point3d): Point3d =
     Point3d(
       max(first.x, second.x),
       max(first.y, second.y),
